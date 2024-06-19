@@ -665,7 +665,6 @@ this.fetchAnimeArtwork = async (id) => {
                 animeInfo.genres = data.data.Media.genres;
                 animeInfo.season = data.data.Media.season;
                 animeInfo.studios = data.data.Media.studios.edges.map((item) => item.node.name);
-                animeInfo.subOrDub = dub ? models_1.SubOrSub.DUB : models_1.SubOrSub.SUB;
                 animeInfo.type = data.data.Media.format;
                 
 
