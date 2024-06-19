@@ -701,6 +701,39 @@ class Anilist extends AnimeParser {
     }
   };
 
+
+override fetchAnimeArtwork = async (
+  id: string
+): Promise<IAnimeInfo> => {
+  const animeInfo: IAnimeInfo = {
+    id: id,
+  };
+
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    query: anilistMediaDetailQuery(id),
+  };
+
+  try {
+    const anifyInfo = await new Anify(
+      this.proxyConfig,
+      this.adapter,
+      this.provider.name.toLowerCase() as 'gogoanime' | 'zoro' | 'animepahe' | '9anime'
+    ).fetchAnimeInfo(id);
+
+    animeInfo.mappings = anifyInfo.mappings;
+    animeInfo.artwork = anifyInfo.artwork;
+
+  } catch (err) {}
+
+  return animeInfo;
+};
+
+
+
   /**
    *
    * @param episodeId Episode id
