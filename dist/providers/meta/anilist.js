@@ -669,7 +669,6 @@ this.fetchAnimeArtwork = async (id) => {
                 
 
                 if ((this.provider instanceof zoro_1.default || this.provider instanceof gogoanime_1.default) &&
-                    !dub &&
                     (animeInfo.status === models_1.MediaStatus.ONGOING ||
                         (0, utils_1.range)({ from: 1940, to: new Date().getFullYear() + 1 }).includes(parseInt(animeInfo.releaseDate)))) {
                     try {
