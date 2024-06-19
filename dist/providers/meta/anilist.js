@@ -568,6 +568,38 @@ class Anilist extends models_1.AnimeParser {
                 throw new Error(err.message);
             }
         };
+
+
+this.fetchAnimeArtwork = async (id) => {
+    const animeInfo = {
+        id: id,
+        title: '',
+    };
+
+    const options = {
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        query: utils_1.anilistMediaDetailQuery(id),
+    };
+
+    try {
+        const anifyInfo = await new anify_1.default(this.proxyConfig, this.adapter, this.provider.name.toLowerCase()).fetchAnimeInfo(id);
+        animeInfo.mappings = anifyInfo.mappings;
+        animeInfo.artwork = anifyInfo.artwork;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+
+    return animeInfo;
+};
+
+
+
+
+      
+      
         /**
          *
          * @param episodeId Episode id
