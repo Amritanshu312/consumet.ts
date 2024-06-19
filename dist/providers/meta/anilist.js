@@ -691,26 +691,7 @@ this.fetchAnimeArtwork = async (id) => {
                         },
                         externalLinks: data.data.Media.externalLinks.filter((link) => link.type === 'STREAMING'),
                     }, dub, id);
-                if (fetchFiller) {
-                    const { data: fillerData } = await this.client.get(`https://raw.githubusercontent.com/saikou-app/mal-id-filler-list/main/fillers/${animeInfo.malId}.json`, { validateStatus: () => true });
-                    if (!fillerData.toString().startsWith('404')) {
-                        fillerEpisodes = [];
-                        fillerEpisodes === null || fillerEpisodes === void 0 ? void 0 : fillerEpisodes.push(...fillerData.episodes);
-                    }
-                }
-                animeInfo.episodes = (_82 = animeInfo.episodes) === null || _82 === void 0 ? void 0 : _82.map((episode) => {
-                    if (!episode.image) {
-                        episode.image = animeInfo.image;
-                        episode.imageHash = animeInfo.imageHash;
-                    }
-                    if (fetchFiller &&
-                        (fillerEpisodes === null || fillerEpisodes === void 0 ? void 0 : fillerEpisodes.length) > 0 &&
-                        (fillerEpisodes === null || fillerEpisodes === void 0 ? void 0 : fillerEpisodes.length) >= animeInfo.episodes.length) {
-                        if (fillerEpisodes[episode.number - 1])
-                            episode.isFiller = new Boolean(fillerEpisodes[episode.number - 1]['filler-bool']).valueOf();
-                    }
-                    return episode;
-                });
+
                 return animeInfo;
             }
             catch (err) {
