@@ -583,6 +583,7 @@ this.fetchAnimeArtwork = async (id) => {
                         const anifyInfo = await new anify_1.default(this.proxyConfig, this.adapter, this.provider.name.toLowerCase()).fetchAnimeInfo(id);
                         animeInfo.mappings = anifyInfo.mappings;
                         animeInfo.artwork = anifyInfo.artwork;
+                      return anifyInfo;
                     }
                     catch (err) {
                         return animeInfo;
