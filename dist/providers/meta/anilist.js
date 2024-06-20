@@ -576,18 +576,9 @@ this.fetchAnimeArtwork = async (id) => {
                 id: id,
                 title: '',
             };
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-                query: (0, utils_1.anilistMediaDetailQuery)(id),
-            };
             let fillerEpisodes;
             try {
-                if ((this.provider instanceof zoro_1.default || this.provider instanceof gogoanime_1.default) &&
-                    (animeInfo.status === models_1.MediaStatus.ONGOING ||
-                        (0, utils_1.range)({ from: 1940, to: new Date().getFullYear() + 1 }).includes(parseInt(animeInfo.releaseDate)))) {
+
                     try {
                         const anifyInfo = await new anify_1.default(this.proxyConfig, this.adapter, this.provider.name.toLowerCase()).fetchAnimeInfo(id);
                         animeInfo.mappings = anifyInfo.mappings;
@@ -596,8 +587,6 @@ this.fetchAnimeArtwork = async (id) => {
                     catch (err) {
                         return animeInfo;
                     }
-                }
-                else
                 return animeInfo;
             }
             catch (err) {
