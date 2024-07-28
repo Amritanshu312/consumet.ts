@@ -1555,14 +1555,7 @@ override fetchAnimeArtwork = async (
 
         if (!possibleAnimeEpisodes.length) {
           possibleAnimeEpisodes = await this.fetchDefaultEpisodeList(Media, dub, id);
-          possibleAnimeEpisodes = possibleAnimeEpisodes?.map((episode: IAnimeEpisode) => {
-            if (!episode.image) {
-              episode.image =
-                Media.coverImage.extraLarge ?? Media.coverImage.large ?? Media.coverImage.medium;
-              episode.imageHash = getHashFromImage(
-                Media.coverImage.extraLarge ?? Media.coverImage.large ?? Media.coverImage.medium
-              );
-            }
+
 
             return episode;
           });
